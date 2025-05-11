@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImageMagic Tools - All-in-One Image Processing Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --dark-color: #2d3436;
+            --light-color: #f5f6fa;
+            --success-color: #00b894;
+            --warning-color: #fdcb6e;
+            --danger-color: #d63031;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .auth-buttons button {
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .login-btn {
+            background-color: transparent;
+            color: var(--dark-color);
+            margin-right: 10px;
+        }
+
+        .signup-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .primary-btn, .secondary-btn {
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 40px 0;
+        }
+
+        .tool-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-icon {
+            background-color: var(--secondary-color);
+            color: white;
+            font-size: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+        }
+
+        .tool-info {
+            padding: 20px;
+        }
+
+        .tool-info h3 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .tool-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 20px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #bbb;
+        }
+
+        /* Tool-specific styles */
+        .tool-container {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tool-header h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .tool-header p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .upload-area {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 2px dashed #ddd;
+            transition: var(--transition);
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+        }
+
+        .upload-area i {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .upload-area h3 {
+            margin-bottom: 10px;
+        }
+
+        .upload-area p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .upload-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .upload-btn:hover {
+            background-color: #5649c5;
+        }
+
+        .options-panel {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .options-panel h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .slider-container {
+            margin-bottom: 20px;
+        }
+
+        .slider-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .range-slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .preview-box {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .preview-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .file-info {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        /* Ad container */
+        .ad-container {
+            width: 100%;
+            background-color: #f0f0f0;
+            padding: 15px;
+            text-align: center;
+            margin: 30px 0;
+            border-radius: var(--border-radius);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .nav-links {
+                margin-top: 15px;
+            }
+
+            .nav-links li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            .auth-buttons {
+                margin-top: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .preview-container {
+                flex-direction: column;
+            }
+        }
+
+        /* Dark mode */
+        .dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+
+        .dark-mode header {
+            background-color: #222;
+        }
+
+        .dark-mode .tool-card,
+        .dark-mode .upload-area,
+        .dark-mode .options-panel,
+        .dark-mode .preview-box {
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+        }
+
+        .dark-mode .tool-info p,
+        .dark-mode .upload-area p,
+        .dark-mode .file-info {
+            color: #bbb;
+        }
+
+        .dark-mode .nav-links a,
+        .dark-mode .hero h1 {
+            color: #f0f0f0;
+        }
+
+        .dark-mode .secondary-btn {
+            border-color: #f0f0f0;
+            color: #f0f0f0;
+        }
+
+        .dark-mode .footer-column ul li a {
+            color: #bbb;
+        }
+
+        .dark-mode .footer-column ul li a:hover {
+            color: #f0f0f0;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--dark-color);
+            margin-left: 20px;
+        }
+
+        .dark-mode .theme-toggle {
+            color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-magic"></i>
+                    <span>ImageMagic Tools</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="home-link">Home</a></li>
+                    <li><a href="#" class="tools-link">All Tools</a></li>
+                    <li><a href="#" class="features-link">Features</a></li>
+                    <li><a href="#" class="pricing-link">Pricing</a></li>
+                    <li><a href="#" class="contact-link">Contact</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <button class="login-btn">Log In</button>
+                    <button class="signup-btn">Sign Up</button>
+                    <button class="theme-toggle" title="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home-section">
+            <div class="container">
+                <h1>Powerful Image Processing Tools</h1>
+                <p>Edit, convert, compress, and enhance your images with our all-in-one online toolkit. No software installation required.</p>
+                <div class="cta-buttons">
+                    <button class="primary-btn start-editing">Start Editing</button>
+                    <button class="secondary-btn learn-more">Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-container">
+            <!-- AdMob Banner Ad Placeholder -->
+            <div id="banner-ad">
+                <p>Advertisement</p>
+            </div>
+        </div>
+
+        <section class="container" id="tools-section">
+            <h2 style="text-align: center; margin-bottom: 20px;">Our Tools</h2>
+            <div class="tools-grid">
+                <!-- Tool cards will be generated dynamically -->
+            </div>
+        </section>
+
+        <!-- Individual tool containers (initially hidden) -->
+        <div class="container">
+            <!-- Background Remover -->
+            <div class="tool-container" id="background-remover">
+                <div class="tool-header">
+                    <h2>Background Remover</h2>
+                    <p>Upload an image to automatically remove the background. You can then add a new background color or download it as a transparent PNG.</p>
+                </div>
+                <div class="upload-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Upload Your Image</h3>
+                    <p>Drag & drop your image here or click to browse</p>
+                    <input type="file" id="bg-remove-upload" accept="image/*" style="display: none;">
+                    <button class="upload-btn" id="bg-remove-btn">Select Image</button>
+                </div>
+                <div class="options-panel" style="display: none;" id="bg-remove-options">
+                    <h3>Background Options</h3>
+                    <div class="slider-container">
+                        <label for="bg-remove-sensitivity">Sensitivity</label>
+                        <input type="range" id="bg-remove-sensitivity" class="range-slider" min="0" max="100" value="50">
+                    </div>
+                    <div>
+                        <label for="bg-color-picker">Background Color</label>
+                        <input type="color" id="bg-color-picker" value="#ffffff">
+                        <button id="transparent-bg-btn">Transparent</button>
+                        <button id="white-bg-btn">White</button>
+                        <button id="black-bg-btn">Black</button>
+                    </div>
+                </div>
+                <div class="preview-container" style="display: none;" id="bg-remove-preview">
+                    <div class="preview-box">
+                        <h3>Original</h3>
+                        <img id="bg-original-img" class="preview-image" src="" alt="Original Image">
+                        <div class="file-info">
+                            <span id="bg-original-size"></span>
+                        </div>
+                    </div>
+                    <div class="preview-box">
+                        <h3>Result</h3>
+                        <img id="bg-result-img" class="preview-image" src="" alt="Result Image">
+                        <div class="file-info">
+                            <span id="bg-result-size"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons" style="display: none;" id="bg-remove-actions">
+                    <button class="primary-btn" id="bg-download-png">Download PNG</button>
+                    <button class="primary-btn" id="bg-download-jpg">Download JPG</button>
+                    <button class="secondary-btn" id="bg-process-another">Process Another</button>
+                </div>
+            </div>
+
+            <!-- Passport Photo Creator -->
+            <div class="tool-container" id="passport-photo">
+                <!-- Similar structure to background remover -->
+            </div>
+
+            <!-- Image Compressor -->
+            <div class="tool-container" id="image-compressor">
+                <!-- Similar structure to background remover -->
+            </div>
+
+            <!-- More tool containers... -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ImageMagic Tools</h3>
+                    <p>Your all-in-one solution for image processing and conversion needs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Tools</h3>
+                    <ul>
+                        <li><a href="#">Background Remover</a></li>
+                        <li><a href="#">Passport Photo</a></li>
+                        <li><a href="#">Image Compressor</a></li>
+                        <li><a href="#">Image to PDF</a></li>
+                        <li><a href="#">PDF to JPG</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ImageMagic Tools. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tool data
+        const tools = [
+            {
+                id: 'background-remover',
+                title: 'Background Remover',
+                description: 'Remove background from images automatically and replace with any color.',
+                icon: 'fas fa-cut'
+            },
+            {
+                id: 'passport-photo',
+                title: 'Passport Photo Creator',
+                description: 'Create perfectly sized passport photos that meet official requirements.',
+                icon: 'fas fa-id-card'
+            },
+            {
+                id: 'image-compressor',
+                title: 'Image Compressor',
+                description: 'Reduce image file size without noticeable quality loss.',
+                icon: 'fas fa-compress-alt'
+            },
+            {
+                id: 'image-to-pdf',
+                title: 'Image to PDF',
+                description: 'Convert multiple images to a single PDF document.',
+                icon: 'fas fa-file-pdf'
+            },
+            {
+                id: 'pdf-to-jpg',
+                title: 'PDF to JPG',
+                description: 'Extract images from PDF files or convert each page to JPG.',
+                icon: 'fas fa-file-image'
+            },
+            {
+                id: 'png-to-jpg',
+                title: 'PNG to JPG',
+                description: 'Convert PNG images to JPG format with customizable background.',
+                icon: 'fas fa-exchange-alt'
+            },
+            {
+                id: 'image-resizer',
+                title: 'Image Resizer',
+                description: 'Resize images to exact dimensions or standard sizes.',
+                icon: 'fas fa-expand-alt'
+            },
+            {
+                id: 'signature-generator',
+                title: 'Signature Generator',
+                description: 'Create realistic digital signatures from your name.',
+                icon: 'fas fa-signature'
+            },
+            {
+                id: 'rotate-flip',
+                title: 'Rotate & Flip',
+                description: 'Rotate images to any angle or flip horizontally/vertically.',
+                icon: 'fas fa-sync-alt'
+            },
+            {
+                id: 'watermark-remover',
+                title: 'Watermark Remover',
+                description: 'Remove watermarks from images with AI-powered tools.',
+                icon: 'fas fa-water'
+            },
+            {
+                id: 'image-adjustments',
+                title: 'Image Adjustments',
+                description: 'Fine-tune brightness, contrast, saturation and more.',
+                icon: 'fas fa-sliders-h'
+            },
+            {
+                id: 'emotion-painter',
+                title: 'Emotion Painter',
+                description: 'Transform facial expressions to show different emotions.',
+                icon: 'fas fa-smile'
+            }
+        ];
+
+        // DOM elements
+        const toolsGrid = document.querySelector('.tools-grid');
+        const toolContainers = document.querySelectorAll('.tool-container');
+        const homeSection = document.getElementById('home-section');
+        const toolsSection = document.getElementById('tools-section');
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+
+        // Generate tool cards
+        tools.forEach(tool => {
+            const toolCard = document.createElement('div');
+            toolCard.className = 'tool-card';
+            toolCard.innerHTML = `
+                <div class="tool-icon">
+                    <i class="${tool.icon}"></i>
+                </div>
+                <div class="tool-info">
+                    <h3>${tool.title}</h3>
+                    <p>${tool.description}</p>
+                </div>
+            `;
+            toolCard.addEventListener('click', () => showTool(tool.id));
+            toolsGrid.appendChild(toolCard);
+        });
+
+        // Show specific tool
+        function showTool(toolId) {
+            homeSection.style.display = 'none';
+            toolsSection.style.display = 'none';
+            
+            toolContainers.forEach(container => {
+                container.style.display = 'none';
+            });
+            
+            document.getElementById(toolId).style.display = 'block';
+            
+            // Show interstitial ad every 3 tool uses
+            if (typeof showInterstitialAd === 'function') {
+                showInterstitialAd();
+            }
+        }
+
+        // Navigation
+        document.querySelector('.home-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            homeSection.style.display = 'block';
+            toolsSection.style.display = 'block';
+            toolContainers.forEach(container => {
+                container.style.display = 'none';
+            });
+        });
+
+        document.querySelector('.tools-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            homeSection.style.display = 'none';
+            toolsSection.style.display = 'block';
+            toolContainers.forEach(container => {
+                container.style.display = 'none';
+            });
+            window.scrollTo(0, toolsSection.offsetTop);
+        });
+
+        document.querySelector('.start-editing').addEventListener('click', () => {
+            homeSection.style.display = 'none';
+            toolsSection.style.display = 'block';
+            window.scrollTo(0, toolsSection.offsetTop);
+        });
+
+        // Dark mode toggle
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // Background remover functionality
+        const bgRemoveUpload = document.getElementById('bg-remove-upload');
+        const bgRemoveBtn = document.getElementById('bg-remove-btn');
+        const bgRemoveOptions = document.getElementById('bg-remove-options');
+        const bgRemovePreview = document.getElementById('bg-remove-preview');
+        const bgRemoveActions = document.getElementById('bg-remove-actions');
+        const bgOriginalImg = document.getElementById('bg-original-img');
+        const bgResultImg = document.getElementById('bg-result-img');
+        const bgOriginalSize = document.getElementById('bg-original-size');
+        const bgResultSize = document.getElementById('bg-result-size');
+        const bgColorPicker = document.getElementById('bg-color-picker');
+        const transparentBgBtn = document.getElementById('transparent-bg-btn');
+        const whiteBgBtn = document.getElementById('white-bg-btn');
+        const blackBgBtn = document.getElementById('black-bg-btn');
+        const bgDownloadPng = document.getElementById('bg-download-png');
+        const bgDownloadJpg = document.getElementById('bg-download-jpg');
+        const bgProcessAnother = document.getElementById('bg-process-another');
+
+        bgRemoveBtn.addEventListener('click', () => bgRemoveUpload.click());
+
+        bgRemoveUpload.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const file = this.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    bgOriginalImg.src = event.target.result;
+                    bgResultImg.src = event.target.result; // Temporary, will be replaced with processed image
+                    
+                    // Show file size
+                    bgOriginalSize.textContent = formatFileSize(file.size);
+                    bgResultSize.textContent = 'Processing...';
+                    
+                    // Show options and preview
+                    bgRemoveOptions.style.display = 'block';
+                    bgRemovePreview.style.display = 'flex';
+                    bgRemoveActions.style.display = 'flex';
+                    
+                    // Process image (in a real app, this would call the API)
+                    setTimeout(() => {
+                        // Simulate processing delay
+                        bgResultSize.textContent = formatFileSize(file.size * 0.7); // Simulate smaller file
+                    }, 1500);
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Background color change handlers
+        bgColorPicker.addEventListener('input', function() {
+            // In a real app, this would update the processed image with new background
+            console.log('Background color changed to:', this.value);
+        });
+
+        transparentBgBtn.addEventListener('click', function() {
+            bgColorPicker.value = '#ffffff'; // Reset to white (but transparent in processing)
+            console.log('Transparent background selected');
+        });
+
+        whiteBgBtn.addEventListener('click', function() {
+            bgColorPicker.value = '#ffffff';
+            console.log('White background selected');
+        });
+
+        blackBgBtn.addEventListener('click', function() {
+            bgColorPicker.value = '#000000';
+            console.log('Black background selected');
+        });
+
+        // Download handlers
+        bgDownloadPng.addEventListener('click', function() {
+            // In a real app, this would download the processed image as PNG
+            console.log('Downloading as PNG');
+            simulateDownload('processed-image.png');
+        });
+
+        bgDownloadJpg.addEventListener('click', function() {
+            // In a real app, this would download the processed image as JPG
+            console.log('Downloading as JPG');
+            simulateDownload('processed-image.jpg');
+        });
+
+        bgProcessAnother.addEventListener('click', function() {
+            // Reset the tool
+            bgRemoveUpload.value = '';
+            bgRemoveOptions.style.display = 'none';
+            bgRemovePreview.style.display = 'none';
+            bgRemoveActions.style.display = 'none';
+            bgOriginalImg.src = '';
+            bgResultImg.src = '';
+        });
+
+        // Helper function to format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Helper function to simulate download
+        function simulateDownload(filename) {
+            const link = document.createElement('a');
+            link.href = bgResultImg.src;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show rewarded ad after download
+            if (typeof showRewardedAd === 'function') {
+                showRewardedAd();
+            }
+        }
+
+        // Initialize AdMob (placeholder functions)
+        function initializeAdMob() {
+            console.log('Initializing AdMob...');
+            // In a real app, this would initialize the AdMob SDK
+        }
+
+        function showBannerAd() {
+            console.log('Showing banner ad...');
+            // In a real app, this would display a banner ad
+        }
+
+        function showInterstitialAd() {
+            console.log('Showing interstitial ad...');
+            // In a real app, this would display an interstitial ad
+        }
+
+        function showRewardedAd() {
+            console.log('Showing rewarded ad...');
+            // In a real app, this would display a rewarded ad
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAdMob();
+            showBannerAd();
+        });
+    </script>
+</body>
+</html>
